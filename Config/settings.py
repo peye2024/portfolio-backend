@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['https://portfolio-backend-5gxn.onrender.com']
+ALLOWED_HOSTS = ['portfolio-backend-5gxn.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
