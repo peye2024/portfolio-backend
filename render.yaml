@@ -7,10 +7,10 @@ databases:
 services:
   - type: web
     plan: free
-    name: client  # Updated to match the project
+    name: Client  # Updated to match the project
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn client.wsgi:application"  # Updated to use Gunicorn with Django's WSGI
+    startCommand: "gunicorn Client.wsgi:application"  # Updated to use Gunicorn with Django's WSGI
     envVars:
       - key: postgresql://backend_port_user:1BVggA1JJLPovF3EkS0arr9ObV6SC1mA@dpg-crv7skg8fa8c73cstfdg-a.oregon-postgres.render.com/backend_port
         fromDatabase:
