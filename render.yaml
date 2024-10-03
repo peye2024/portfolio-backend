@@ -12,11 +12,11 @@ services:
     buildCommand: "./build.sh"
     startCommand: "gunicorn client.wsgi:application"  # Updated to use Gunicorn with Django's WSGI
     envVars:
-      - key: DATABASE_URL
+      - key: postgresql://backend_port_user:1BVggA1JJLPovF3EkS0arr9ObV6SC1mA@dpg-crv7skg8fa8c73cstfdg-a.oregon-postgres.render.com/backend_port
         fromDatabase:
-          name: clientdb
+          name: backend_port
           property: connectionString
-      - key: SECRET_KEY
+      - key: 3546erdfgse5634634555555555555Q#######%254
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
