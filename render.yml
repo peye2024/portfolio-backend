@@ -1,0 +1,22 @@
+databases:
+  - name: dpg-crv7skg8fa8c73cstfdg-a  # Updated to match the project
+    plan: free
+    databaseName: backend_port
+    user: backend_port_user
+
+services:
+  - type: web
+    plan: free
+    name: client  # Updated to match the project
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn client.wsgi:application"  # Updated to use Gunicorn with Django's WSGI
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: clientdb
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
