@@ -11,4 +11,7 @@ python manage.py collectstatic --no-input
 # Apply any outstanding database migrations
 python manage.py migrate
 
-python manage.py createsuperuser
+# Create superuser non-interactively
+echo "from django.contrib.auth.models import User; \
+if not User.objects.filter(username='shimul').exists(): \
+    User.objects.create_superuser('shimul', 'hasaanshimul@gmail.com', 'BitFactory61')" | python manage.py shell
