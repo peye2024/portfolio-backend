@@ -1,17 +1,27 @@
 #!/usr/bin/env bash
-# Exit on error
-set -o errexit
 
-# Modify this line as needed for your package manager (pip, poetry, etc.)
+set -o errexit  # exit on error
+
+# Install required packages
 pip install -r requirements.txt
 
-# Convert static asset files
+# Collect static files
 python manage.py collectstatic --no-input
 
-# Apply any outstanding database migrations
+# Apply database migrations
 python manage.py migrate
 
 # Create superuser non-interactively
-echo "from django.contrib.auth.models import User; \
-if not User.objects.filter(username='shimul').exists(): \
-    User.objects.create_superuser('shimul', 'hasaanshimul@gmail.com', 'BitFactory61')" | python manage.py shell
+python manage.py shell <<EOF
+from django.contrib.auth.models import User
+
+username = 'shimul'
+email = 'hasaanshimul@gmail.com'
+password = 'BitFactory61'
+
+if not User.objects.filter(username=username).exists():
+    User.objects.create_superuser(username=username, email=email, password=password)
+    print("Superuser created.")
+else:
+    print("Superuser already exists.")
+EOF
